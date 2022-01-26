@@ -32,7 +32,7 @@ let authenticate = function (req, res, next) {
 app.post("/register", async (req, res) => {
     try {
         let connection = await mongoClient.connect(URL);
-        let db = connection.db("urlShortner");
+        let db = connection.db("url-shortner");
 
         //Password encrypt
         let salt = await bcrypt.genSalt(10);
@@ -52,7 +52,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         let connection = await mongoClient.connect(URL);
-        let db = connection.db("urlShortner");
+        let db = connection.db("url-shortner");
         let user = await db.collection("users").findOne({ email: req.body.email }) 
         //if user is undefined then no user is present
         if (user) {
@@ -76,7 +76,7 @@ app.post("/login", async (req, res) => {
 app.get("/getUrls", async (req, res) => {
     try {
         let connection = await mongoClient.connect(URL)
-        let db = connection.db("urlShortner")
+        let db = connection.db("url-shortner")
         let urls = await db.collection("urlshorts").find({}).toArray()
         await connection.close();
         res.json(urls)
@@ -98,7 +98,7 @@ app.post("/create-url", async (req, res) => {
         //connect to db
         let connection = await mongoClient.connect(URL)
         // select db
-        let db = connection.db("urlShortner")
+        let db = connection.db("url-Shortner")
         // select collection and do operation
         await db.collection("urlshorts").insertOne({
             url: req.body.url,
@@ -126,7 +126,7 @@ function generateUrl() {
 app.delete("/url/:id" ,async (req,res) =>{
     try {
         let connection = await mongoClient.connect(URL);
-        let db = connection.db("urlShortner");
+        let db = connection.db("url-shortner");
         let objId = mongodb.ObjectId(req.params.id)
         await db.collection("urlshorts").deleteOne({ _id: objId })
         await connection.close();
