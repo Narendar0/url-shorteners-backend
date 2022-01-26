@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongodb = require("mongodb")
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mongoClient = mongodb.MongoClient;
 const URL = "mongodb+srv://nandhu:<nandhu>@cluster0.vtvma.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
